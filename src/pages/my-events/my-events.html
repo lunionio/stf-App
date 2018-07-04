@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Meus Eventos</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-tabs (ionChange)="onTabSelect($event)" id="my-events" showWhen="android" selectedIndex="1">
+    <ion-tab [root]="aguardando" [rootParams]="aguardandoParams" tabTitle="À confirmar"></ion-tab>
+    <ion-tab [root]="proximos" [rootParams]="proximosParams" tabTitle="Contratado"></ion-tab>
+    <ion-tab [root]="realizados" [rootParams]="realizadosParams" tabTitle="Realizado"></ion-tab>
+
+  </ion-tabs>
+  <ion-tabs (ionChange)="onTabSelect($event)" id="my-events" showWhen="ios" selectedIndex="1">
+    <ion-tab [root]="aguardando" [rootParams]="aguardandoParams" tabTitle="À confirmar" tabIcon="ios-time"></ion-tab>
+    <ion-tab [root]="proximos" [rootParams]="proximosParams" tabTitle="Contratado" tabIcon="calendar"></ion-tab>
+    <ion-tab [root]="realizados" [rootParams]="realizadosParams" tabTitle="Realizado" tabIcon="checkmark-circle"></ion-tab>
+
+  </ion-tabs>
+</ion-content>

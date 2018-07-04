@@ -1,0 +1,36 @@
+.date-box {
+  display: inline-block;
+  border-radius: 8px;
+  background-color: #fafafa;
+  position: relative;
+  height: 5.5rem;
+  text-align: center;
+  width: 4.5rem;
+  padding-top: 2rem;
+  font-weight: bold;
+  font-size: 1.8rem;
+  font-family: 'Fira Mono', sans-serif;
+  &:before {
+    top: 0;
+    color: white;
+    background-color: color($colors, danger);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    content: attr(data-month);
+  }
+  &:after {
+    bottom: 0;
+    content: attr(data-weekday);
+    font-weight: normal;
+  }
+  &:after,
+  &:before {
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    padding: 3px 0;
+    font-size: 1rem;
+    left: 0;
+    width: 100%;
+    position: absolute;
+  }
+}

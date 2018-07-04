@@ -1,0 +1,215 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detalhes</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+  <!--Vai ser a parte de checkin e check out !-->
+  <div *ngIf="evento.contractStages.length">
+    <h2 class="section-header">Contratos</h2>
+    <div *ngFor="let stages of evento.contractStages let i = index" class="skills">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-9 text-wrap>
+            <label>
+              <strong>{{stages.stageName}}</strong>
+            </label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-9 text-wrap>
+            <p class="description" *ngIf="stages.description">{{stages.description}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div class="row-professional">
+        <ion-list class="card-professional">
+          <ion-item-sliding *ngFor="let job of stages.jobs; let i = index" #slidingItem>
+            <ion-item>
+              <ion-grid class="left-margin">
+                <ion-row>
+                  <ion-col col-10>
+                    <p text-wrap>
+                      <strong>{{job.serviceName}}</strong>
+                    </p>
+                    <p text-wrap>{{job.budget | currency:'BRL':true}} / {{job.enumBudgetType.toLowerCase()}}</p>
+                    <span>{{job.dateStart | date:'dd/MMM'}}</span>
+                  </ion-col>
+                  <ion-col col-2>
+                    <ion-icon class="icon-swp" name="swap" *ngIf="swiperEnabled(job)"></ion-icon>
+                    <ion-icon name="alert" color="danger" *ngIf="pendingInvite(job)"></ion-icon>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+
+            <ion-item-options class="swiper" side="right" *ngIf="checkSectionEnabled(job)">
+              <button ion-button class="button-shadow present" (click)="confirmCheckInCheckOut(job,'check-in', slidingItem)" *ngIf="checkInEnabled(job)">
+                <span class="button-inner">
+                  <ion-icon name="thumbs-up" class="icon-size"></ion-icon>
+                  Check In
+                </span>
+              </button>
+              <button ion-button class="button-shadow" color="staffpro" (click)="confirmCheckInCheckOut(job,'check-out', slidingItem)"
+                *ngIf="checkOutEnabled(job)">
+                <span class="button-inner">
+                  <ion-icon name="done-all" class="icon-size"></ion-icon>
+                  Check Out
+                </span>
+              </button>
+              <button ion-button class="button-shadow btn-concluido" *ngIf="ratingEnabled(job)" (click)="feedback(job,slidingItem)">
+                <span class="button-inner">
+                  <ion-icon name="star" class="icon-size"></ion-icon>
+                  Avaliar
+                </span>
+              </button>
+            </ion-item-options>
+
+            <ion-item-options *ngIf="cancelEnabled(job)">
+              <button ion-button class="button-shadow" color="dark" (click)="cancelContract(job,slidingItem)">
+                <span class="button-inner">
+                  Cancelar
+                </span>
+              </button>
+            </ion-item-options>
+
+            <ion-item-options class="swiper" side="right" *ngIf="pendingInvite(job)">
+              <button ion-button class="button-shadow" color="staffpro">
+                <span class="button-inner">Aceitar</span>
+                o convite?
+              </button>
+              <button ion-button class="button-shadow present" (click)="confirmInvite(job, true,slidingItem)">
+                <span class="button-inner">
+                  <ion-icon name="thumbs-up" class="icon-size"></ion-icon>
+                </span>
+              </button>
+              <button ion-button class="button-shadow" color="staffpro" (click)="confirmInvite(job, false,slidingItem)">
+                <span class="button-inner">
+                  <ion-icon name="thumbs-down" class="icon-size"></ion-icon>
+                </span>
+              </button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </div>
+    </div>
+  </div>
+
+  <!--Vai ser a parte de oportunidades !-->
+  <ion-grid *ngIf="evento.opportunityStages.length">
+    <h2 class="section-header" text-wrap>Oportunidades</h2>
+    <ion-row>
+      <ion-col col-12>
+        <div class="skills top-buffer-sm" *ngFor="let stage of evento.opportunityStages let i = index">
+          <ion-row>
+            <ion-col>
+              <label>
+                <strong>{{stage.stageName}}</strong>
+              </label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-9 text-wrap>
+              <p class="description" *ngIf="stage.description">{{stage.description}}</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12>
+              <div class="skills" *ngFor="let job of stage.jobs let i = index" (click)="subscribe(job, i)">
+                <ion-row class="row-jobs">
+                  <ion-col col-7>
+                    <strong text-wrap>{{job.serviceGroup}}</strong>
+                    <label text-wrap>- {{job.serviceName}}</label>
+                  </ion-col>
+                  <ion-col col-3 text-wrap>
+                    <strong class="numeric">{{job.budget | currency:'BRL':true}}</strong>
+                  </ion-col>
+                  <ion-col col-2>
+                    <span class="date-box" [attr.data-month]="job.dateStart | date:'EEE'" [attr.data-weekday]="job.dateStart | date:'MMM'">{{job.dateStart | date:'dd'}}</span>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <h2 *ngIf="evento.paymentDescription" class="section-header">Pagamento</h2>
+  <p *ngIf="evento.paymentDescription">{{evento.paymentDescription}}</p>
+  <h2 class="section-header" *ngIf="evento.benefits && evento.benefits.length">Benefícios</h2>
+  <p *ngFor="let benefit of evento.benefits">
+    <ion-icon name="md-checkmark" color="secondary"></ion-icon>
+    {{benefit}}
+  </p>
+
+  <h2 class="section-header">Sobre o Evento</h2>
+  <p>{{evento.description}}</p>
+  <ion-grid margin-vertical>
+    <ion-row>
+      <ion-col col-8>
+        <strong class="label">Data e Horário</strong>
+        <h4>{{evento.dateStart | date:'dd/MMM/yyyy HH:mm'}}</h4>
+      </ion-col>
+      <ion-col col-4>
+        <strong class="label">Duração</strong>
+        <h4>{{evento.eventTime}}</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <strong class="label">Término</strong>
+        <h4>{{evento.dateEnd | date:'dd/MMM/yyyy HH:mm'}}</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card margin-vertical class="map" (click)="navigate(evento.eventAddress.lat, evento.eventAddress.lng, 'Local do Evento')"
+          background-image="{{ addressMap }}">
+
+        </ion-card>
+        <p>{{evento.eventAddress.address1}} {{evento.eventAddress.address2}} - {{evento.eventAddress.neighborhood}}</p>
+        <p>
+          <span class="numeric">{{evento.eventAddress.zipCode}}</span> {{evento.eventAddress.cityName}} / {{evento.eventAddress.stateAbbreviation}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <h2 class="section-header">Contratante</h2>
+  <ion-grid>
+    <ion-row margin-bottom>
+      <ion-col col-12>
+        <strong class="label">Empresa</strong>
+        <p>{{evento.companyName}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <strong class="label">Telefone</strong>
+        <p class="numeric" *ngFor="let contact of evento.contacts">{{contact}}</p>
+      </ion-col>
+      <!-- <ion-col>
+        <strong class="label">CNPJ</strong>
+        <p class="numeric">{{evento.companyCnpj}}</p>
+      </ion-col> -->
+    </ion-row>
+  </ion-grid>
+
+  <h2 class="section-header" *ngIf="evento.eventMeetingAddress">Ponto de Encontro</h2>
+  <ion-grid *ngIf="evento.eventMeetingAddress">
+    <ion-row>
+      <ion-card class="map" (click)="navigate(evento.eventMeetingAddress.lat, evento.eventMeetingAddress.lng, 'Ponto de Encontro')"
+        background-image="{{ meetingMap }}"></ion-card>
+      <p>{{evento.eventMeetingAddress.address1}} {{evento.eventMeetingAddress.address2}} - {{evento.eventMeetingAddress.neighborhood}}</p>
+      <p>
+        <span class="numeric">{{evento.eventMeetingAddress.zipCode}}</span> {{evento.eventMeetingAddress.cityName}} / {{evento.eventMeetingAddress.stateAbbreviation}}</p>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

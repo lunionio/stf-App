@@ -1,0 +1,29 @@
+page-about {
+  .logo {
+    width: 60vw;
+    display: block;
+    margin: 0 15vw;
+    margin-top: 12vh;
+  }
+  .version {
+    font-family: 'Fira Mono';
+    width: 60vw;
+    margin: 0 14.5vw;
+    display: block;
+    text-align: right;
+    font-size: 1.55rem;
+  }
+  p {
+    line-height: 2.2rem;
+    font-size: 1.6rem;
+    padding: 10px;
+  }
+  ion-footer {
+    background-color: color($colors, staffpro, base);
+    text-align: center;
+    padding: 4px;
+    img {
+      max-width: 30vw;
+    }
+  }
+}

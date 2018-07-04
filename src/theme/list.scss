@@ -1,0 +1,47 @@
+.list-ios > .item-block:first-child {
+  border-top-width: 0;
+}
+
+.list-ios, .list-md {
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .item-block .item-inner {
+    padding-right: 0;
+    border-bottom-width: 0;
+  }
+  .item-block:last-child {
+    border-bottom-width: 0;
+  }
+}
+
+.list-md {
+  margin-bottom: 30px;
+}
+
+.list-md .item-input.input-has-focus:last-child,
+.item-md.item-input.input-has-focus .item-inner {
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+.list-header-ios, .list-header-md {
+  border-top-width: 0;
+  border-bottom: 2px solid color($colors, staffpro, base);
+  padding-left: 0;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #111;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.item-md, .item-ios {
+  ion-icon[item-left],
+  ion-icon[item-right],
+  ion-icon[item-start],
+  ion-icon[item-end] {
+    margin-top: 7px;
+    margin-bottom: 7px;
+  }
+}

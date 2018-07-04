@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>613746754498-kvcvu9k58qmc4g1imf99k8ghnj827d04.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.613746754498-kvcvu9k58qmc4g1imf99k8ghnj827d04</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCS_uvP___EMVFhB0J43ZDa_bMNW6QeTPA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>613746754498</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>br.com.staffpro</string>
+	<key>PROJECT_ID</key>
+	<string>staff-pro</string>
+	<key>STORAGE_BUCKET</key>
+	<string>staff-pro.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:613746754498:ios:45ce785ec22fe1c4</string>
+	<key>DATABASE_URL</key>
+	<string>https://staff-pro.firebaseio.com</string>
+</dict>
+</plist>

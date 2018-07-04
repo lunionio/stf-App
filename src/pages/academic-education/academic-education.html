@@ -1,0 +1,105 @@
+<ion-content padding-horizontal>
+  <div class="empty" text-center *ngIf="!academic_userEducationList || !academic_userEducationList.length">
+    <ion-spinner *ngIf="!academic_initialized"></ion-spinner>
+    <ion-icon *ngIf="academic_initialized" name="ios-filing-outline"></ion-icon>
+    <h1 *ngIf="academic_initialized">Nenhum Item Disponível</h1>
+  </div>
+
+
+  <ion-list>
+    <ion-item-sliding #slidingItem *ngFor="let education of academic_userEducationList">
+      <ion-item>
+        <div item-start>
+          <strong>{{education.courseName}}</strong>
+          <div item-content>
+            {{education.educationalInstitution}}
+          </div>
+          <div item-content *ngIf="education.dateStart && education.dateEnd">
+            {{education.dateStart | date:'MMM/yyyy'}} - {{education.dateEnd | date:'MMM/yyyy'}}
+          </div>
+        </div>
+        <div item-end>
+          <div *ngIf="education.totalHours">
+            {{education.totalHours}} horas
+          </div>
+          <div item-content class="swp">
+            <ion-icon class="icon-swp" name="swap"></ion-icon>
+          </div>
+        </div>
+      </ion-item>
+      <ion-item-options class="swiper" side="right">
+        <button ion-button class="button-shadow" color="staffpro" (click)="showDetail(education, slidingItem)">
+          <span class="button-inner">
+            Ver Certificado
+          </span>
+        </button>
+        <button ion-button class="button-shadow" color="danger" (click)="delete(education, slidingItem)">
+          <span class="button-inner">
+            <ion-icon name="md-trash" class="icon-size"></ion-icon>
+          </span>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
+<ion-footer color="staffpro">
+  <ion-grid>
+    <ion-row (click)="showFooter()">
+      <ion-col col-10 text-center>
+        <p color="light">Adicionar nova graduação</p>
+      </ion-col>
+      <ion-col col-2 text-center>
+        <ion-icon class="more-detail" name="arrow-up" *ngIf="!academic_show"></ion-icon>
+        <ion-icon class="more-detail" name="arrow-down" *ngIf="academic_show"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-content padding-left padding-right padding-bottom *ngIf="academic_show" class="content-form">
+    <ion-label stacked>Graduação</ion-label>
+    <ion-auto-complete [dataProvider]="autoCompleteCourseProvider" [options]="{ placeholder : ' ' }" [(ngModel)]="academic_userEducation.courseName"></ion-auto-complete>
+
+    <ion-label stacked>Instituição de Ensino</ion-label>
+    <ion-auto-complete [dataProvider]="autoCompleteEducationalInstitutionsProvider" [options]="{ placeholder : ' ' }" [(ngModel)]="academic_userEducation.educationalInstitution"></ion-auto-complete>
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Grau da formação</ion-label>
+        <ion-select [(ngModel)]="academic_userEducation.enumCourseType">
+          <ion-option value="Tecnologo">Tecnólogo</ion-option>
+          <ion-option value="Bacharel">Bacharel</ion-option>
+          <ion-option value="PosGraduacao">Pós-Graduação</ion-option>
+          <ion-option value="Mestrado">Mestrado</ion-option>
+          <ion-option value="Doutorado">Doutorado</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6 padding-right>
+            <ion-label>Início</ion-label>
+            <ion-datetime class="numeric" [min]="minYear" [max]="maxYear" displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="academic_userEducation.dateStart"
+              cancelText="Cancelar" doneText="OK"></ion-datetime>
+          </ion-col>
+          <ion-col col-6 padding-left>
+            <ion-label>Término</ion-label>
+            <ion-datetime class="numeric" [min]="minYear" [max]="maxYear" displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="academic_userEducation.dateEnd"
+              cancelText="Cancelar" doneText="OK"></ion-datetime>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-6 padding-right>
+            <ion-label stacked>Total de horas</ion-label>
+            <ion-input type="tel" [(ngModel)]="academic_userEducation.totalHours"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- <ion-item *ngIf="!academic_degreeImage">
+        <button ion-button color="staffpro" class="upload" (click)="uploadDegree()">
+          Imagem do diploma
+          <ion-icon name="md-cloud-upload"></ion-icon>
+        </button>
+      </ion-item> -->
+      <ion-item>
+        <button ion-button block color="dark" (click)="insert()">Adicionar</button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-footer>

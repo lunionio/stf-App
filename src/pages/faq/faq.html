@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Dúvidas Frequentes</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding-horizontal>
+  <ion-list *ngFor="let group of faq">
+    <ion-list-header>{{group.name}}</ion-list-header>
+    <button *ngFor="let item of group.questions" ion-item (click)="question(item)">{{item.question}}</button>
+  </ion-list>
+</ion-content>

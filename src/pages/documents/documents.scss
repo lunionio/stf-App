@@ -1,0 +1,25 @@
+page-documents {
+  ion-list-header {
+    position: relative;
+    small {
+      font-weight: lighter;
+      font-size: 1.2rem;
+      position: absolute;
+      bottom: 13px;
+      right: 0;
+      &.danger {
+        color: color($colors, danger);
+      }
+    }
+  }
+  .button-small-ios,
+  .button-small-md {
+    margin-top: 16px;
+    height: 2.8em;
+    .button-inner {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+
+}

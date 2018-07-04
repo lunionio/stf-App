@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Áreas de Atuação</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding-horizontal>
+  <ion-list>
+    <ion-item *ngFor="let service of userServices">
+      <div item-start>
+        <strong>{{service.group}}</strong>
+        <div item-content>
+          {{service.name}}
+        </div>
+      </div>
+      <div item-content padding-right>
+        {{moneyLabel(service.defaultBudgetByEvent)}}
+      </div>
+      <div item-end>
+        <button ion-button color="danger" (click)="delete(service)" item-end>
+          <ion-icon name="md-trash"></ion-icon>
+        </button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer color="staffpro">
+  <ion-grid>
+    <ion-row (click)="showFooter()">
+      <ion-col col-10>
+        <p text-center color="light">Inclua mais especialidades</p>
+      </ion-col>
+      <ion-col col-2 text-center>
+        <ion-icon class="more-detail" name="arrow-up" *ngIf="!show"></ion-icon>
+        <ion-icon class="more-detail" name="arrow-down" *ngIf="show"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div padding *ngIf="show" class="showAnin">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Área</ion-label>
+        <ion-select [(ngModel)]="selectedServiceGroup" name="main-area" cancelText="Cancelar" (ionChange)="onServiceGroupChange($event)">
+          <ion-option *ngFor="let serviceGroup of serviceGroups" [value]="serviceGroup">{{serviceGroup.description}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Especialização</ion-label>
+        <ion-select [(ngModel)]="selectedService" name="main-area" cancelText="Cancelar">
+          <ion-option *ngFor="let service of services" [value]="service">{{service.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Pretenção salarial</ion-label>
+        <ion-input type="tel" [(ngModel)]="budget" name="budget" placeholder="0,00" maxlength="10" custom-ion-input-currency-mask></ion-input>
+      </ion-item>
+    </ion-list>
+    <button ion-button block color="dark" (click)="insert()">Adicionar</button>
+  </div>
+</ion-footer>

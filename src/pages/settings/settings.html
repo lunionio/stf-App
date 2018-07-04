@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Configurações</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding-horizontal>
+
+  <ion-list>
+    <ion-list-header ion-list-header>Suporte</ion-list-header>
+    <button [navPush]="faqPage" ion-item>Dúvidas Frequentes</button>
+    <button [navPush]="contactPage" ion-item>Fale Conosco</button>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Staff Pro</ion-list-header>
+    <button [navPush]="aboutPage" ion-item>Sobre</button>
+    <button [navPush]="termsPage" ion-item>Termos de Uso</button>
+    <button [navPush]="privacyPage" ion-item>Política de Privacidade</button>
+  </ion-list>
+</ion-content>

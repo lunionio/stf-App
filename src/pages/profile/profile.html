@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Editar Perfil</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="submit()" class="android-only">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+      <button ion-button (click)="submit()" class="ios-only">Salvar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div text-center>
+    <ion-avatar>
+      <img [src]="account.imageAvatar" alt="avatar" *ngIf="account.imageAvatar">
+      <button ion-button (click)="selectAvatar()" color="staffpro" round icon-only>
+        <ion-icon name="camera"></ion-icon>
+      </button>
+    </ion-avatar>
+  </div>
+  <form (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Nome*</ion-label>
+        <ion-input type="text" [(ngModel)]="profile.name" name="first-name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Sobrenome*</ion-label>
+        <ion-input type="text" [(ngModel)]="profile.lastName" name="last-name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Email*</ion-label>
+        <ion-input type="email" [(ngModel)]="profile.email" name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Data de Nascimento</ion-label>
+        <ion-datetime class="numeric" name="birthdate" [min]="minYear" [max]="maxYear" displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY"
+          [(ngModel)]="profile.birthdate" cancelText="Cancelar" doneText="OK"></ion-datetime>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Endereço</ion-list-header>
+      <ion-item>
+        <ion-label stacked>Cep</ion-label>
+        <ion-input type="tel" [textMask]="masks.ZIPCODE" [(ngModel)]="profile.zipCode" name="zipcode" (ngModelChange)="onZipcodeChange($event)"
+          class="numeric"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Endereço, nº</ion-label>
+        <ion-input type="text" [(ngModel)]="profile.address1" name="address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Complemento</ion-label>
+        <ion-input type="text" [(ngModel)]="profile.address2" name="complement"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Bairro</ion-label>
+        <ion-input type="text" [(ngModel)]="profile.neighborhood" name="district"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Estado</ion-label>
+        <ion-select [(ngModel)]="profile.stateId" name="state" cancelText="Cancelar" (ionChange)="onStateChange($event)">
+          <ion-option *ngFor="let state of states" [value]="state.stateId">{{state.abbreviation}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-label stacked text-left>Cidade</ion-label>
+      <button type="button" ion-button block outline color="light" class="button-select" (click)="selectCity()" icon-end>
+        {{selectedCity.name}}
+        <ion-icon name="md-arrow-dropdown"></ion-icon>
+      </button>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Telefones de Contato</ion-list-header>
+      <ion-item>
+        <ion-label stacked>Celular</ion-label>
+        <ion-input type="tel" [textMask]="masks.CELLPHONE" [(ngModel)]="profile.cellPhone" name="cellphone" class="numeric" (ngModelChange)="onConformToMaskChange('cellPhone')"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!profile.isCellPhoneValid">
+        <button ion-button color="staffpro" block (click)="smsVerification()" type="button">Confirmar celular</button>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Residencial</ion-label>
+        <ion-input type="tel" [textMask]="masks.PHONE" [(ngModel)]="profile.phone" name="phone" class="numeric" (ngModelChange)="onConformToMaskChange('phone')"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list radio-group [(ngModel)]="profile.enumProfessionalType" name="enum-professional-type">
+      <ion-list-header>Tipo de Contrato</ion-list-header>
+      <ion-item>
+        <ion-label>Freelancer</ion-label>
+        <ion-radio value="Freelancer"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Empresa</ion-label>
+        <ion-radio value="Empresa"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-label stacked>* Campos obrigatórios</ion-label>
+    </ion-list>
+  </form>
+</ion-content>

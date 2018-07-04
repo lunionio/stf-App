@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Currículo</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="submit()" class="android-only">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+      <button ion-button (click)="submit()" class="ios-only">Salvar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding-horizontal>
+  <form (ngSubmit)="submit()">
+    <ion-list>
+      <ion-list-header text-wrap>Referência Profissional</ion-list-header>
+      <ion-item margin-top>
+        <ion-textarea [(ngModel)]="resume.experience" name="experience" placeholder="Descreva suas referências profissionais"></ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header text-wrap>Educação, Cursos e Treinamentos</ion-list-header>
+      <ion-item margin-top>
+        <ion-textarea [(ngModel)]="resume.education" name="education" placeholder="Liste os cursos e treinamentos que já participou"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

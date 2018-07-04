@@ -1,0 +1,16 @@
+<ion-header>
+  <button ion-button clear icon-only color="light" class="close" (click)="dismiss()">
+    <ion-icon name="md-close"></ion-icon>
+  </button>
+</ion-header>
+<ion-content padding>
+  <h3>Avalie esse serviço</h3>
+  <div text-center>
+    <rating [(ngModel)]="rating" ngDefaultControl></rating>
+  </div>
+  <ion-label stacked>Comentário</ion-label>
+  <ion-textarea [(ngModel)]="comment" name="comment" placeholder="Descreva como foi sua experiência no evento"></ion-textarea>
+</ion-content>
+<ion-footer padding>
+  <button ion-button color="staffpro" block (click)="submit()">Enviar Avaliação</button>
+</ion-footer>

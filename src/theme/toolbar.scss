@@ -1,0 +1,49 @@
+.bar-button-default-ios,
+.bar-button-clear-ios-default,
+.bar-button-ios-default,
+.bar-button-default-md,
+.bar-button-clear-md-default,
+.bar-button-md-default,
+.toolbar-title-ios,
+.toolbar-title-md {
+  color: white;
+}
+
+.toolbar-title-ios,
+.toolbar-title-md {
+  text-transform: uppercase;
+}
+
+.toolbar-title-md {
+  padding-left: .4rem;
+}
+
+.tabs-ios .tab-button-icon {
+  margin-top: 1px;
+  margin-bottom: 4px;
+}
+
+.tabs-ios .tab-button-text {
+  margin-bottom: 3px;
+}
+
+.tabs-md .tab-button {
+  color:rgba(255, 255, 255, 0.7);
+}
+
+.tabs-md .tab-button-text {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+ion-tab {
+  display: block;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  z-index: -1;
+
+  &.show-tab {
+    opacity: 1;
+    z-index: 1;
+  }
+}

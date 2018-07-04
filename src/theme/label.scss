@@ -1,0 +1,15 @@
+.label-ios[stacked], .label-md[stacked] {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.label-md[stacked], .label-md[stacked] {
+  margin-bottom: 3px;
+}
+
+[text-wrap] .label-ios, [text-wrap] .label-md {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}

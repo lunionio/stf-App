@@ -1,0 +1,127 @@
+page-courses-detail {
+    ion-content {
+        .item-md [item-end],
+        .item-ios [item-end] {
+            margin-right: 0;
+        }
+    }
+    ion-footer {
+        color: #fff;
+        background-color: color($colors, staffpro);
+        p {
+            font-size: 1.6rem;
+            line-height: 2rem;
+            margin: 1vh 10vw;
+            font-weight: lighter;
+        }
+        ion-select {
+            background-color: #ffffff;
+            color: #111;
+        }
+        .item-select ion-input,
+        .item-select ion-select {
+            border-color: #ffffff;
+        }
+        .item-ios,
+        .item-md {
+            background-color: transparent;
+        }
+        .scroll-content {
+            margin-top: 0 !important;
+        }
+    }
+    .item-input ion-input {
+        background-color: white;
+        border: transparent;
+        height: 3.4rem;
+    }
+    .more-detail {
+        font-size: 3rem;
+    }
+    .label-ios[stacked],
+    .label-md[stacked] {
+        color: #fff;
+    }
+    ion-datetime {
+        background-color: white;
+        color: #111;
+        border-color: #ffffff;
+        height: 3.4rem;
+    }
+    .datetime-md,
+    .datetime-ios {
+        padding-top: 9px;
+    }
+    .upload {
+        font-size: 1.6rem;
+        ion-icon {
+            padding-left: 1rem;
+            font-size: 1.3em;
+        }
+    }
+    .swp {
+        margin-left: 5rem;
+    }
+    .content-form {
+        height: 73vh;
+        background: #ff5722;
+    }
+    .item-ios,
+    .item-md {
+        border-bottom-color: transparent;
+    }
+    ion-label {
+        color: white;
+    }
+    ion-input {
+        background-color: white;
+        border: transparent;
+        color: #111;
+        border-radius: 8px;
+        height: 3.4rem;
+    }
+    .empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        flex-direction: column;
+        ion-icon {
+            font-size: 8rem;
+            color: #e0e0e0;
+        }
+        ion-spinner {
+            &,
+            * {
+                width: 48px;
+                height: 48px;
+            }
+            * {
+                stroke: color($colors, staffpro);
+            }
+        }
+        h1 {
+            text-transform: uppercase;
+            color: #e0e0e0;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+    .list-ios>.item-block:last-child,
+    .list-ios>.item-wrapper:last-child .item-block,
+    .list-md>.item-block:last-child,
+    .list-md>.item-wrapper:last-child .item-block {
+        border-bottom-color: transparent;
+    }
+    .item-md [item-start] {
+        width: 23rem;
+    }
+    .item-ios [item-start] {
+        width: 18rem;
+    }
+    .item-ios [item-end],
+    .item-md [item-end] {
+        width: 10rem;
+    }
+}

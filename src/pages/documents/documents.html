@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Documentação</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list *ngFor="let doc of documents">
+    <ion-list-header>{{doc.label}} <small [class.danger]="doc.status !== 'Pending'">{{statusDescription(doc.status)}}</small></ion-list-header>
+    <ion-item>
+      <ion-label stacked *ngIf="doc.status === 'Pending'"></ion-label>
+      <ion-label stacked *ngIf="doc.status !== 'Pending'">{{doc.value}}</ion-label>
+      <ion-input type="tel" [(ngModel)]="doc.value" [name]="doc.name" class="numeric" *ngIf="doc.status === 'Pending' && !doc.hasMask"></ion-input>
+      <ion-input type="tel" [(ngModel)]="doc.value" [name]="doc.name" class="numeric" *ngIf="doc.status === 'Pending' && doc.hasMask" [textMask]="doc.mask"></ion-input>
+      <button *ngIf="doc.status !== 'Pending'" item-end ion-button color="danger" (click)="remove(doc)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item>
+    <ion-item *ngIf="doc.showDate">
+      <ion-label class="numeric" stacked>
+        Vencimento
+        <strong *ngIf="doc.status !== 'Pending'">{{doc.date|date:':dd/MM/yyyy'}}</strong>
+      </ion-label>
+      <ion-datetime class="numeric" [min]="minYear" [max]="maxYear" displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="doc.date" cancelText="Cancelar" doneText="OK" *ngIf="doc.showDate && doc.status === 'Pending'"></ion-datetime>
+    </ion-item>
+    <ion-item text-center *ngIf="doc.status === 'Pending'">
+      <button ion-button round small color="staffpro" icon-left (click)="selectDocument(doc)">
+        <ion-icon name="md-cloud-upload"></ion-icon>
+        Enviar Documento
+      </button>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Sobre</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding text-center>
+  <img src="assets/img/logo.png" alt="logo" class="logo">
+  <strong class="version">VERSÃO {{version}}</strong>
+  <div [innerHTML]="innerHtml"></div>
+</ion-content>
+<ion-footer (click)="asteria()">
+  <img src="assets/img/powered.png" alt="logo">
+</ion-footer>

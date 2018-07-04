@@ -1,0 +1,35 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title text-center>
+        <img src="assets/img/logo-light.png" class="brand">
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content padding>
+    <button menuClose ion-item detail-none class="info" (click)="openPage({ component: profilePage })">
+      <ion-avatar item-start>
+        <img [src]="account.imageAvatar" class="avatar large" *ngIf="account.getImageAvatar()">
+      </ion-avatar>
+      <h2>{{account.displayName}}</h2>
+      <p>{{account.email}}</p>
+      <rating [(ngModel)]="account.rating" readOnly="true" ngDefaultControl *ngIf="account.rating"></rating>
+      <span class="rating numeric" *ngIf="account.rating"></span>
+    </button>
+    <ion-list>
+      <div *ngFor="let p of sideMenuProvider.pages">
+        <button menuClose ion-item *ngIf="p.show" (click)="openPage(p)">
+          <ion-icon [name]="p.icon" item-start></ion-icon>
+          {{p.title}}
+          <ion-icon name="alert" color="danger" item-end *ngIf="p.component === 'MyProfilePage' && isDocumentsPending"></ion-icon>
+        </button>
+      </div>
+      <button ion-item (click)="openPage({ component: 'x' })">
+        <ion-icon name="md-log-out" item-start></ion-icon> Sair
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

@@ -1,0 +1,135 @@
+page-wizard { 
+  .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+    background-image: none;
+  }
+  [ion-navbar]::after {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAHBAMAAADzDtBxAAAAD1BMV…h/TXEAAAAaSURBVAjXYxCEAgY4UIICBmMogMsgFLtAAQCNSwXZKOdPxgAAAABJRU5ErkJggg==);
+    background-repeat: repeat-x;
+    background-position: 0 -2px;
+    content: "";
+  }
+  .grid, [col-4], [col-6]  {
+    padding: 0;
+  }
+  ion-slides {
+    height: auto;
+  }
+  ion-footer {
+    background-color: color($colors, light);
+    .button-ios, .button-md {
+      margin: 0;
+      height: 5rem;
+    }
+    [ion-button].button-block.button-ios, 
+    [ion-button].button-block.button-md {
+      // font-weight: lighter;
+      font-size: 1.4rem;
+      border-radius: 0;      
+    }
+    [icon-left] ion-icon, [icon-right] ion-icon {
+      font-size: 3rem;
+    }
+  }
+
+  .wizard {
+    margin-top: 20px;
+    padding: 0 0 10px 0;
+    background-color: #ffffff;
+    .wizard-step {
+      padding: 0;
+      position: relative;
+      .wizard-stepnum {
+        color: #595959;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+      .wizard-info {
+        color: #999;
+        font-size: 14px;
+      }
+      > {
+        .wizard-dot {
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          display: block;
+          background: rgba(color($colors, staffpro), .5);
+          top: 22px;
+          left: 50%;
+          margin-top: -15px;
+          margin-left: -15px;
+          border-radius: 50%;
+          transition: background-color .6s ease;
+          transition-delay: .3s;
+          &:after {
+            content: ' ';
+            width: 14px;
+            height: 14px;
+            background: color($colors, staffpro);
+            border-radius: 50px;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            transition: opacity .6s ease;
+            transition-delay: .3s;
+          }
+        }
+        .progress {
+          background-color: #f5f5f5;
+          overflow: hidden;
+          position: relative;
+          border-radius: 0px;
+          height: 4px;
+          box-shadow: none;
+          margin: 20px 0;
+          > .progress-bar {
+            float: left;
+            height: 100%;
+            font-size: 12px;
+            line-height: 20px;
+            color: #fff;
+            text-align: center;
+            transition: width .2s linear;
+            width: 0px;
+            box-shadow: none;
+            background: lighten(color($colors, staffpro), 5%);
+          }
+        }
+      }
+      &.complete > .progress > .progress-bar {
+        width: 100%;
+      }
+      &.active > .progress > .progress-bar {
+        width: 50%;
+        transition-delay: .2s;
+      }
+      &:first-child.active > .progress > .progress-bar {
+        width: 0%;
+      }
+      &:last-child.active > .progress > .progress-bar {
+        width: 100%;
+      }
+      &.disabled > .wizard-dot {
+        background-color: #f5f5f5;
+        &:after {
+          opacity: 0;
+        }
+      }
+      &:first-child > .progress {
+        left: 50%;
+        width: 50%;
+      }
+      &:last-child > .progress {
+        width: 50%;
+      }
+      &.disabled a.wizard-dot {
+        pointer-events: none;
+      }
+    }
+  }
+}

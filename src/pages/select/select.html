@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="select()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="filter" cancelButtonText="Cancelar" placeholder="Localizar" [showCancelButton]="shouldShowCancel" (ionInput)="onInput()" (ionCancel)="onCancel()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list [virtualScroll]="filteredItems">
+    <ion-item *virtualItem="let item" (click)="select(item)" padding-horizontal>{{item.name}}</ion-item>
+  </ion-list>
+</ion-content>

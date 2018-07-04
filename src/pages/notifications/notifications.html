@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Notificações</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding-horizontal>
+  <ion-list>
+    <ion-item>
+      <ion-label>Eventos próximos à mim</ion-label>
+      <ion-toggle [(ngModel)]="nearJobNotification"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Novos eventos</ion-label>
+      <ion-toggle [(ngModel)]="newJobNotification"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Aprovação da contratação</ion-label>
+      <ion-toggle [(ngModel)]="hiredJobNotification"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Contratação cancelada</ion-label>
+      <ion-toggle [(ngModel)]="cancelledJobNotification"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Lembretes de eventos</ion-label>
+      <ion-toggle [(ngModel)]="eventRemindersNotification"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cancelamento da contratação</ion-label>
+      <ion-toggle [(ngModel)]="managementContractCancelledNotification"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Nova proposta de contratação</ion-label>
+      <ion-toggle [(ngModel)]="newManagementContractProposalNotification"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Convites para serviços</ion-label>
+      <ion-toggle [(ngModel)]="contractInviteNotification"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Alterações em eventos</ion-label>
+      <ion-toggle [(ngModel)]="eventChangesNotification"></ion-toggle>
+    </ion-item>
+  </ion-list>
+</ion-content>

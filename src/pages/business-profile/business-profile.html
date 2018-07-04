@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Perfil Empresarial</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="submit()" class="android-only">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+      <button ion-button (click)="submit()" class="ios-only">Salvar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div text-center>
+    <ion-avatar>
+      <img [src]="profile.companyAvatar" alt="avatar" *ngIf="profile.companyAvatar">
+      <button ion-button (click)="selectCompanyAvatar()" color="staffpro" round icon-only>
+        <ion-icon name="camera" ></ion-icon>
+      </button>
+    </ion-avatar>
+  </div>
+  <form (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Razão Social</ion-label>
+        <ion-input type="text" [(ngModel)]="profile.companyName" name="company-name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Nome Fantasia</ion-label>
+        <ion-input type="text" [(ngModel)]="profile.companyFantasyName" name="company-fantasy-name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="email" [(ngModel)]="profile.companyEmail" name="company-email"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Localização</ion-list-header>
+      <ion-item>
+        <ion-label stacked>Cep</ion-label>
+        <ion-input custom-tab-index type="tel" [textMask]="masks.ZIPCODE" [(ngModel)]="profile.zipCode" name="zipcode" (ngModelChange)="onZipcodeChange($event)" class="numeric"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Endereço</ion-label>
+        <ion-input custom-tab-index type="text" [(ngModel)]="profile.address1" name="address1"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Complemento</ion-label>
+        <ion-input custom-tab-index type="text" [(ngModel)]="profile.address2" name="address2"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Bairro</ion-label>
+        <ion-input type="text" [(ngModel)]="profile.neighborhood" name="neighborhood"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Estado</ion-label>
+        <ion-select [(ngModel)]="profile.stateId" name="state" cancelText="Cancelar" (ionChange)="onStateChange($event)">
+          <ion-option *ngFor="let state of states" [value]="state.stateId">{{state.abbreviation}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-label stacked text-left>Cidade</ion-label>
+      <button type="button" ion-button block outline color="light" class="button-select" (click)="selectCity()" icon-end>
+        {{selectedCity.name}}
+        <ion-icon name="md-arrow-dropdown"></ion-icon>
+      </button>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Contato</ion-list-header>
+      <ion-item>
+        <ion-label stacked>Telefone</ion-label>
+        <ion-input type="tel" [textMask]="masks.PHONE" [(ngModel)]="profile.companyPhone" name="company-phone" class="numeric"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

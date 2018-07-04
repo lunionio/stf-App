@@ -1,0 +1,22 @@
+<ion-header>
+  <div class="icon-header">
+    <ion-icon name="text" color="secondary"></ion-icon>
+  </div>
+</ion-header>
+<ion-content padding text-center>
+  <h1>{{title}}</h1>
+  <p>{{subtitle}}</p>
+  <ion-input type="tel" maxlength="6" [(ngModel)]="codeSms" name="codeSms" [textMask]="masks.CODESMS"></ion-input>
+</ion-content>
+<ion-footer padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="space-col">
+        <button ion-button color="staffpro" block (click)="resend()" type="button">Reenviar</button>
+      </ion-col>
+      <ion-col class="space-col">
+        <button ion-button color="secondary" block (click)="submit()" type="button">Confirmar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

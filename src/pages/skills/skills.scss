@@ -1,0 +1,41 @@
+page-skills {
+    ion-content {
+        .item-md [item-end],
+        .item-ios [item-end] {
+            margin-right: 0;
+        }
+    }
+    ion-footer {
+        color: #fff;
+        background-color: color($colors, staffpro);
+        p {
+            font-size: 1.6rem;
+            line-height: 2rem;
+            margin: 1vh 10vw;
+            font-weight: lighter;
+        }
+        ion-select {
+            background-color: #ffffff;
+            color: #111;
+        }
+        .item-select ion-input,
+        .item-select ion-select {
+            border-color: #ffffff;
+        }
+        .item-ios,
+        .item-md {
+            background-color: transparent;
+            .label-ios[stacked],
+            .label-md[stacked] {
+                color: #fff;
+            }
+        }
+    }
+    .item-input ion-input {
+        background-color: white;
+        border: transparent;
+    }
+    .more-detail {
+        font-size: 3rem;
+    }
+}

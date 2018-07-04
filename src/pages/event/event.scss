@@ -1,0 +1,183 @@
+page-event {
+    .section-header {
+        border-bottom: 2px solid color($colors, staffpro, base);
+        padding: 2vh 0 1vh;
+        font-weight: bold;
+        font-size: 2rem;
+        color: #111;
+        text-transform: uppercase;
+    }
+    .map {
+        margin: 0 0 16px;
+        width: 100%;
+        height: 33vh;
+        background-image: url('../assets/img/1x1.png');
+        background-size: cover;
+        background-position: center bottom;
+        transition: background-image .3s;
+    }
+    strong.label {
+        display: block;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        margin-bottom: 2px;
+    }
+    p {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        line-height: 2rem;
+    }
+    h4 {
+        font-size: 1.7rem;
+        font-weight: normal;
+        margin-top: 5px;
+    }
+    .skill-button {
+        padding-left: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        min-height: 5.5rem;
+        .label-ios,
+        .label-md {
+            margin-bottom: 8px;
+        }
+        h2 {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+        p {
+            margin: 0;
+        }
+        .date-box {
+            color: #111;
+        }
+        .icon-md {
+            display: inline-block;
+            margin-top: 19px;
+        }
+        .date-box {
+            display: inline-block;
+            border-radius: 8px;
+            background-color: #fafafa;
+            position: relative;
+            height: 42px;
+            text-align: center;
+            width: 4.5rem;
+            padding-top: 17px;
+            font-weight: bold;
+            font-size: 11px;
+            font-family: 'Fira Mono', sans-serif; //margin-top: 18px;
+        }
+    }
+    [padding] h2:first-child {
+        margin-top: 0;
+    }
+    .section-header-event {
+        border-bottom: 2px solid #ff5722;
+        padding: 2vh 0 1vh;
+        color: #111;
+        text-transform: uppercase;
+    }
+    .card-confirm {
+        background-color: #f0f4c3;
+        border-radius: 10px;
+        margin-top: 10px;
+        h4 {
+            font-weight: lighter;
+            color: black;
+            margin-top: 5px !important;
+        }
+    }
+    .btn-concluido {
+        background-color: #ffb300;
+    }
+    .btn-concluido.activated {
+        background-color: #eec25d;
+    }
+    .present {
+        margin-top: -2rem;
+        h5 {
+            padding-left: 0;
+        }
+    }
+    .swiper {
+        span {
+            ion-icon {
+                font-size: 30px;
+            }
+        }
+        .button-shadow {
+            box-shadow: 4px 1px 20px 1px rgba(0, 0, 0, 0.49);
+        }
+        .present {
+            background-color: #d4dd6b;
+        }
+        ion-item-options {
+            border-bottom: none;
+        }
+    }
+    .skills {
+        border: 2px solid #e7f18a;
+        border-radius: 8px;
+        background-color: #e7f18a;
+        padding-top: 5px;
+        margin-bottom: 5px;
+        label {
+            padding-left: 10px;
+        }
+        font-size: 18px;
+        font-weight: 100;
+        .row-professional {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #e7f18a;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+        .text-size {
+            font-size: 15px;
+        }
+    }
+    .more-detail-jobs {
+        color: #ff5722;
+        font-size: 29px;
+    }
+    .card-professional {
+        margin-top: 5px;
+       
+
+        .item-ios,
+        .item-md {
+            background-color: #f0f4c3;
+        }
+        .left-margin {
+            margin-left: 8px;
+        }
+        .icon-swp {
+            color: #ff5722;
+        }
+        p {
+            color: black;
+        }
+       
+    }
+
+    .list-ios > .item-wrapper:last-child .item-block {
+        border-bottom: 0 solid transparent;
+    }
+    .row-jobs {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #f0f4c3;
+        font-size: 1.2rem;
+        padding: 5px;
+    }
+
+    .description{
+        font-size: 1.2rem;
+        font-size: 1.4rem;
+        margin-left: 10px;
+    }
+}

@@ -1,0 +1,26 @@
+rating {
+  ul.rating {
+    margin: 2px 0;
+    padding: 0;
+    display: inline-block;
+    li {
+      display: inline-block;
+      border: 0px;
+      background: none;
+      color: #ffb400;
+      padding: 0 1px;
+      ion-icon {
+        font-size: 2.4rem;
+      }
+    }
+  }
+  &.small {
+    ul.rating {
+      li {
+        ion-icon {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+}

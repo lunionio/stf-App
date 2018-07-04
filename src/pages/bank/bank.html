@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Dados Bancários</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="submit()" class="android-only">
+        <ion-icon name="md-checkmark"></ion-icon>
+      </button>
+      <button ion-button (click)="submit()" class="ios-only">Salvar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div text-center>
+  </div>
+  <form (ngSubmit)="submit()">
+    <ion-list-header>Dados da conta</ion-list-header>
+    <ion-list radio-group [(ngModel)]="billingDetails.billingAccountType" name="billing-account-type">
+      <ion-label stacked>Tipo de conta</ion-label>
+      <ion-item>
+        <ion-label>Conta Corrente</ion-label>
+        <ion-radio value="Corrente"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Poupança</ion-label>
+        <ion-radio value="Poupanca"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Banco</ion-label>
+        <ion-select [(ngModel)]="billingDetails.billingAccountAgencyName" name="billing-account-agency-name">
+          <ion-option value="Banco do Brasil">Banco do Brasil</ion-option>
+          <ion-option value="Bradesco">Bradesco</ion-option>
+          <ion-option value="Caixa">Caixa</ion-option>
+          <ion-option value="Itau">Itaú</ion-option>
+          <ion-option value="Santander">Santander</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Número da agência</ion-label>
+        <ion-input type="tel" [(ngModel)]="billingDetails.billingAccountAgencyNumber" name="billing-account-agency-number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Número da conta</ion-label>
+        <ion-input type="tel" [(ngModel)]="billingDetails.billingAccountNumber" name="billing-account-number"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Dados do titular</ion-list-header>
+      <ion-item>
+        <ion-label stacked>Nome completo</ion-label>
+        <ion-input type="text" [(ngModel)]="billingDetails.billingAccountOwnerName" name="billing-account-owner-name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>CPF</ion-label>
+        <ion-input type="tel" [(ngModel)]="billingDetails.billingAccountOwnerCpf" name="billing-account-owner-cpf" class="numeric" [textMask]="cpfMask"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

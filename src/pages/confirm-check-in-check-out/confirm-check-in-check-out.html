@@ -1,0 +1,17 @@
+<ion-header>
+  <button ion-button clear icon-only color="light" class="close" (click)="dismiss()">
+    <ion-icon name="md-close"></ion-icon>
+  </button>
+  <div class="modal-header" padding>
+    <h2>{{endPoint}}</h2>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div padding>
+    <h3>Confirma o seu {{endPoint}} neste evento?</h3>
+  </div>
+</ion-content>
+<ion-footer padding>
+  <button ion-button color="staffpro" block (click)="confirm()">Confirmar</button>
+</ion-footer>

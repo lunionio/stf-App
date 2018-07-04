@@ -1,0 +1,75 @@
+.platform-ios .android-only {
+  display: none;
+}
+
+.platform-android .ios-only {
+  display: none;
+}
+
+.numeric {
+  font-family: "Fira Mono", sans-serif;
+}
+
+ion-content {
+  overflow: auto;
+}
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.footer-md::before {
+  background-image: none;
+}
+
+a {
+  color: color($colors, staffpro);
+}
+
+ion-app._gmaps_cdv_ .nav-decor {
+  background-color: transparent !important;
+}
+
+.grid {
+  padding-left: 0;
+  padding-right: 0;
+  .col {
+    padding: 0;
+  }
+}
+
+
+.searchbar-md .searchbar-input,
+.searchbar-ios .searchbar-input {
+  border-radius: 8px;
+  border-color: transparent;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0), 0 3px 1px -2px rgba(0, 0, 0, 0), 0 1px 5px 0 rgba(0, 0, 0, 0);
+  padding-left: 5px;
+  height: 3.4rem;
+}
+
+.searchbar-ios.searchbar-left-aligned .searchbar-input {
+  padding-left: 5px;
+}
+
+.searchbar-ios{
+  background: transparent;
+  border-bottom-color: transparent;
+}
+
+ion-auto-complete ul li:last-child,
+ion-auto-complete ul li{
+  color: color($colors,dark);
+}
+
+.searchbar-md .searchbar-search-icon,
+.searchbar-ios .searchbar-search-icon{
+  background-image: none;
+}
+
+
+.list-ios ion-item-options, 
+.list-md ion-item-options{
+  border-bottom: 0 solid transparent;
+}

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "613746754498",
+    "firebase_url": "https://staff-pro.firebaseio.com",
+    "project_id": "staff-pro",
+    "storage_bucket": "staff-pro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613746754498:android:45ce785ec22fe1c4",
+        "android_client_info": {
+          "package_name": "br.com.staffpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613746754498-9rhkn62es4aj0mitlom5veikqo61uo9f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnVpWcxWgKlKvxqknD6oZ48_2knPOiKoA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

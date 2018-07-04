@@ -1,0 +1,47 @@
+<ion-header>
+  <button ion-button clear icon-only color="light" class="close" (click)="dismiss()">
+    <ion-icon name="md-close"></ion-icon>
+  </button>
+  <div class="modal-header" padding>
+    <img [src]="job.image" alt="skill" />
+  </div>
+</ion-header>
+<ion-content>
+  <div padding>
+    <h3>{{job.serviceName}}</h3>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          <ion-label stacked>Data e Horário</ion-label>
+          <h4>{{job.dateStart | date:'dd/MMM/yyyy HH:mm'}}</h4>
+        </ion-col>
+        <ion-col col-4>
+          <ion-label stacked>Duração</ion-label>
+          <h4>{{job.jobTime}}</h4>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="evento.eventMeetingAddress">
+        <ion-col col-12>
+          <ion-list>
+            <ion-item>
+              <ion-label stacked>Prefiro ir para</ion-label>
+              <ion-select [(ngModel)]="meetingPoint" name="subject" cancelText="Cancelar">
+                <ion-option value="1">Local do Evento</ion-option>
+                <ion-option value="2">Ponto de Encontro</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label stacked>Valor</ion-label>
+          <h1 class="numeric">{{job.budget | currency:'BRL':true}} <small>/ {{job.enumBudgetType.toLowerCase()}}</small></h1>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+<ion-footer padding>
+  <button ion-button color="staffpro" block (click)="subscribe()">Quero me inscrever</button>
+</ion-footer>

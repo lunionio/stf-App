@@ -1,0 +1,31 @@
+ion-loading {
+  ion-backdrop {
+    opacity: .8 !important;
+  }
+  &.loading-md,
+  &.loading-ios {
+    .loading-wrapper {
+      background-color: transparent;
+      box-shadow: none;
+      text-align: center;
+      margin-top: 10vh;
+      img {
+        width: 20vw;
+      }
+      p {
+        color: #ffffff;
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.lazy-load {
+  opacity: 0;
+  transition: opacity 1s;
+  &.ng-lazyloaded {
+    opacity: 1;
+  }
+}

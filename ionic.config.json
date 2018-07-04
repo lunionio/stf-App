@@ -1,0 +1,8 @@
+{
+  "name": "ricardo-dias-app-staffpro",
+  "app_id": "1c5a9934",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

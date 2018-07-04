@@ -1,0 +1,23 @@
+page-success {
+  .content-ios, .content-md {
+    background-color: color($colors, staffpro);
+    color: #fff;
+  }
+  .logo {
+    width: 70vw;
+    margin-top: 12vh;
+    display: inline-block;
+  }
+  h2 {
+    margin: 10vh 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 10vw;
+  }
+  p {
+    line-height: 2.2rem;
+    font-size: 1.8rem;
+    margin: 0 5vh 15vw;
+  }
+}

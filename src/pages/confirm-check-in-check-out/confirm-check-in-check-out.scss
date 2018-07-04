@@ -1,0 +1,50 @@
+.modal-wrapper page-confirm-check-in-check-out {
+  background-color: rgba(0, 0, 0, 0.75);
+  ion-header {
+    left: 5vw;
+    top: 3vh;
+    width: calc(100% - 10vw);
+    min-height: 12vh;
+    background-color: color($colors, secondary);
+    text-align: center;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    h2 {
+      color: #ffffff;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .close {
+      position: absolute;
+      top: 0;
+      right: 1vw;
+    }
+    &.content-md .close {
+      top: 1vh;
+    }
+  }
+  ion-content {
+    top: 3vh;
+    left: 5vw;
+    width: calc(100% - 10vw);
+    height: calc(100% - 56vh);
+    border-radius: 15px;
+    .scroll-content{
+      margin-top: 80px;
+    }
+    h3 {
+      text-align: center;
+      font-weight: bold;
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin: 0 10vw 1vh;
+    }
+  }
+  ion-footer {
+    left: 5vw;
+    bottom: 53vh;
+    width: calc(100% - 10vw);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+}

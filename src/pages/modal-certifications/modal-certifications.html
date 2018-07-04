@@ -1,0 +1,48 @@
+<ion-header>
+  <button ion-button clear icon-only color="light" class="close" (click)="dismiss()">
+    <ion-icon name="md-close"></ion-icon>
+  </button>
+</ion-header>
+<ion-content>
+  <div padding *ngIf="show">
+    <h3>
+      <strong>{{userEducation.certificateName}}</strong>
+    </h3>
+    <h4>{{userEducation.educationalInstitution}}</h4>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngIf="userEducation.dateStart">
+          <ion-label stacked>Início</ion-label>
+         <h4>{{userEducation.dateStart | date:'MMM/yyyy'}}</h4> 
+        </ion-col>
+        <ion-col col-6 *ngIf="userEducation.dateEnd">
+          <ion-label stacked>Término</ion-label>
+          <h4>{{userEducation.dateEnd | date:'MMM/yyyy'}}</h4> 
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-label stacked>Carga Horária</ion-label>
+          <h4>{{userEducation.totalHours}}</h4>
+        </ion-col>
+        <ion-col *ngIf="userEducation.licenseNumber" col-6>
+          <ion-label stacked>Nº da Licença</ion-label>
+          <h4>{{userEducation.licenseNumber}}</h4>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="userEducation.certificateUrl">
+        <ion-col>
+          <ion-label stacked>URL do Certificado</ion-label>
+          <a (click)="linkTap(userEducation.certificateUrl)">{{userEducation.certificateUrl}}</a>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div padding *ngIf="!show">
+      <img class="avatar large" src="{{userEducation.degreeImage}}">
+  </div>
+</ion-content>
+<ion-footer padding *ngIf="userEducation.degreeImage">
+  <button ion-button color="staffpro" block (click)="showImageCertificado()">{{titleBtn}}</button>
+</ion-footer>

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Gestão</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding-horizontal>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="Novos Eventos" refreshingText="Localizando Eventos...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="empty" text-center *ngIf="showWarning">
+    <ion-spinner *ngIf="!initialized"></ion-spinner>
+    <ion-icon *ngIf="initialized" name="ios-briefcase-outline"></ion-icon>
+    <h1 *ngIf="initialized">Nenhum Item Disponível</h1>
+  </div>
+
+  <ion-list>
+    <ion-item>
+      <ion-list>
+        <ion-item *ngFor="let item of list">
+          <ion-grid>
+            <ion-row (click)="itemTapped(item)">
+              <ion-col col-2>
+                <img [src]="item.companyAvatar" class="avatar">
+              </ion-col>
+              <ion-col col-8>
+                <div padding-left>
+                  <h2 text-wrap>{{item.eventName}}</h2>
+                  <p>{{item.cityName}} / {{item.stateAbbreviation}}</p>
+                  <strong class="label" text-nowrap>{{item.companyName}}</strong>
+                  <span *ngIf="!recusados">
+                    <rating [(ngModel)]="item.companyRating" readOnly="true" ngDefaultControl></rating>
+                  </span>
+                </div>
+              </ion-col>
+              <ion-col col-2 text-right>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <span class="date-box" [attr.data-month]="item.dateStart | date:'EEE'" [attr.data-weekday]="item.dateStart | date:'MMM'">{{item.dateStart | date:'dd'}}</span>
+                    </ion-col>
+                  </ion-row>
+                  <!-- <ion-row>
+                    <ion-col>
+                      <span class="icon-alert-perso" *ngIf="item.enumSpecialContractStatus == 'Aguardando'">
+                        <ion-icon name="alert" color="danger" item-end></ion-icon>
+                      </span>
+                    </ion-col>
+                  </ion-row> -->
+                </ion-grid>
+              </ion-col>
+            </ion-row>
+            <div class="skills" (click)="itemTapped(item)">
+              <ion-row>
+                <ion-col>
+                  <label text-wrap>
+                    <strong>{{item.specialJobServiceName}}</strong>
+                  </label>
+                </ion-col>
+              </ion-row>
+              <ion-row class="alert-perso" *ngIf="item.enumSpecialContractStatus == 'Aguardando'">
+                <ion-col col-3  text-right>
+                  <ion-icon name="alert" color="danger" item-end></ion-icon>
+                </ion-col>
+                <ion-col col-9  text-left>
+                    <p>Aguardando sua confirmação</p>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+  </ion-list>
+</ion-content>

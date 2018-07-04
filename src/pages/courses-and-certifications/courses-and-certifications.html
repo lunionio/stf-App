@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cursos e Certificações</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-tabs id="coursesAndCertifications" showWhen="android" #myTabs>
+      <ion-tab [root]="graduacao" [rootParams]="graduacaoParams" tabTitle="Graduação"></ion-tab> 
+    <ion-tab [root]="cursos" [rootParams]="cursosParams" tabTitle="Cursos"></ion-tab>
+    <ion-tab [root]="certificados" [rootParams]="certificadoParams" tabTitle="Certificações"></ion-tab> 
+  </ion-tabs>
+  <ion-tabs id="coursesAndCertifications" showWhen="ios" #myTabs>
+      <ion-tab [root]="graduacao" [rootParams]="graduacaoParams" tabTitle="Graduação"></ion-tab>
+    <ion-tab [root]="cursos" [rootParams]="cursosParams" tabTitle="Cursos"></ion-tab>
+    <ion-tab [root]="certificados" [rootParams]="certificadoParams" tabTitle="Certificações"></ion-tab>
+  </ion-tabs>
+</ion-content>

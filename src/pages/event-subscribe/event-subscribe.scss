@@ -1,0 +1,83 @@
+.modal-wrapper page-event-subscribe {
+  background-color: rgba(0, 0, 0, 0.75);
+  ion-header {
+    left: 5vw;
+    top: 3vh;
+    width: calc(100% - 10vw);
+    min-height: 34vh;
+    background-color: color($colors, secondary);
+    text-align: center;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    img {
+      margin-top: 6vh;
+      height: 16vh;
+    }
+    h2 {
+      color: #ffffff;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .close {
+      position: absolute;
+      top: 0;
+      right: 1vw;
+    }
+    &.content-md .close {
+      top: 1vh;
+    }
+  }
+  ion-content {
+    top: 3vh;
+    left: 5vw;
+    width: calc(100% - 10vw);
+    height: calc(100% - 6vh);
+    border-radius: 15px;
+    strong.label {
+      display: block;
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      margin-bottom: 2px;
+    }
+    h1 {
+      margin-top: 0;
+      small {
+        font-family: 'Raleway', sans-serif;
+        font-size: 1.6rem;
+        display: inline-block;
+        margin-left: -3vw;
+      }
+    }
+    h3 {
+      text-align: center;
+      font-weight: bold;
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin: 0 10vw 1vh;
+    }
+    h4 {
+      font-size: 1.8rem;
+      font-weight: normal;
+      margin-top: 5px;
+    }
+    p {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      line-height: 2rem;
+    }
+    .grid {
+      padding: 0;
+    }
+  }
+  ion-footer {
+    left: 5vw;
+    bottom: 3vh;
+    width: calc(100% - 10vw);
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  ion-content .scroll-content{
+    overflow-y: hidden !important;
+  }
+}

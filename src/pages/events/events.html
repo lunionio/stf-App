@@ -1,0 +1,62 @@
+<ion-content padding-horizontal>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="Novos Eventos" refreshingText="Localizando Eventos...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="empty" text-center *ngIf="!professionalProvider.pagers[eventFilter].rows.length">
+    <ion-spinner *ngIf="!initialized"></ion-spinner>
+    <ion-icon *ngIf="initialized" name="ios-filing-outline"></ion-icon>
+    <h1 *ngIf="initialized">Nenhum Item Disponível</h1>
+  </div>
+  <ion-list *ngIf="professionalProvider.pagers[eventFilter].rows.length">
+    <ion-item detail-none *ngFor="let item of professionalProvider.pagers[eventFilter].rows">
+      <ion-grid>
+        <ion-row (click)="itemTapped($event, item)">
+          <ion-col col-2>
+            <img [src]="item.companyAvatar" class="avatar">
+          </ion-col>
+          <ion-col col-6>
+            <div padding-left>
+              <p>{{item.cityName}} / {{item.stateAbbreviation}}</p>
+              <strong class="label" text-nowrap>{{item.companyName}}</strong>
+              <span *ngIf="!recusados">
+                <rating [(ngModel)]="item.companyRate" readOnly="true" ngDefaultControl></rating>
+              </span>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row (click)="itemTapped($event, item)">
+          <ion-col col-12>
+            <div class="skills top-buffer-sm" *ngFor="let stage of item.stages">
+              <label>
+                <strong>{{stage.stageName}}</strong>
+              </label>
+              <ion-row (click)="itemTapped($event, item)">
+                <ion-col col-12>
+                  <div class="skills" *ngFor="let job of stage.jobs">
+                    <ion-row class="row-jobs">
+                      <ion-col col-7>
+                        <strong text-wrap>{{job.serviceGroup}}</strong>
+                        <label text-wrap>- {{job.serviceName}}</label>
+                      </ion-col>
+                      <ion-col col-3 text-wrap>
+                        <strong class="numeric">{{job.budget | currency:'BRL':true}}</strong>
+                      </ion-col>
+                      <ion-col col-2>
+                          <span class="date-box" [attr.data-month]="job.dateStart | date:'EEE'" [attr.data-weekday]="job.dateStart | date:'MMM'">{{job.dateStart | date:'dd'}}</span>
+                      </ion-col>
+                    </ion-row>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(paginate())" [enabled]="hasMore">
+    <ion-infinite-scroll-content loadingText="Aguarde..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

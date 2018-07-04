@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Meu Perfil</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-list-header>Conta</ion-list-header>
+        <button [navPush]="profilePage" ion-item>Perfil</button>
+        <button [navPush]="skillsPage" ion-item>Área de Atuação</button>
+        <button [navPush]="bankPage" ion-item>Dados Bancários</button>
+        <button [navPush]="documentsPage" ion-item>
+          Documentação <ion-icon name="alert" color="danger" item-end *ngIf="isDocumentsPending"></ion-icon>
+        </button>
+        <button [navPush]="businessProfilePage" ion-item *ngIf="account.enumProfessionalType === 'Empresa'">Perfil Empresarial</button>
+        <button [navPush]="resumePage" ion-item>Currículo</button>
+        <button [navPush]="coursesAndCertifications" ion-item>Formação Acadêmica</button>
+        <button [navPush]="changePasswordPage" ion-item>Redefinir Senha</button>
+      </ion-list>
+      <ion-list>
+        <ion-list-header>Preferências</ion-list-header>
+        <button (click)="goToNotifications()" ion-item>Notificações</button>
+      </ion-list>
+</ion-content>

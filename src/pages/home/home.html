@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Oportunidades</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-tabs id="opportunities" showWhen="android" #myTabs>
+    <ion-tab [root]="disponiveis" [rootParams]="disponiveisParams" tabTitle="Disponíveis"></ion-tab>
+    <ion-tab [root]="convites" [rootParams]="convitesParams" tabTitle="Convites"></ion-tab> 
+    <ion-tab [root]="recusados" [rootParams]="recusadosParams" tabTitle="Recusados"></ion-tab>
+  </ion-tabs>
+  <ion-tabs id="opportunities" showWhen="ios" #myTabs>
+    <ion-tab [root]="disponiveis" [rootParams]="disponiveisParams" tabTitle="Disponíveis" tabIcon="flame"></ion-tab>
+    <ion-tab [root]="convites" [rootParams]="convitesParams" tabTitle="Convites" tabIcon="mail"></ion-tab>
+    <ion-tab [root]="recusados" [rootParams]="recusadosParams" tabTitle="Recusados" tabIcon="close-circle"></ion-tab>
+  </ion-tabs>
+</ion-content>
+

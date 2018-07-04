@@ -1,0 +1,147 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Criar Perfil</ion-title>
+  </ion-navbar>
+  <ion-grid class="wizard">
+    <ion-row>
+      <ion-col col-4 class="wizard-step complete" [ngClass]="{ active: step == 1, complete: step > 1 }">
+        <div class="progress">
+          <div class="progress-bar"></div>
+        </div>
+        <span class="wizard-dot"></span>
+      </ion-col>
+      <ion-col col-4 class="wizard-step" [ngClass]="{ disabled: step == 1, active: step == 2, complete: step == 3 }">
+        <div class="progress">
+          <div class="progress-bar"></div>
+        </div>
+        <span class="wizard-dot"></span>
+      </ion-col>
+      <ion-col col-4 class="wizard-step" [ngClass]="{ disabled: step < 3, active: step == 3 }">
+        <div class="progress">
+          <div class="progress-bar"></div>
+        </div>
+        <span class="wizard-dot"></span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-header>
+<ion-content>
+  <ion-slides>
+    <ion-slide>
+      <div padding>
+        <ion-list>
+          <ion-list-header>Dados Pessoais</ion-list-header>
+          <ion-item>
+            <ion-label stacked>Nome*</ion-label>
+            <ion-input custom-tab-index type="text" [(ngModel)]="signup.name" name="name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Sobrenome*</ion-label>
+            <ion-input custom-tab-index type="text" [(ngModel)]="signup.lastName" name="lastname"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Data de Nascimento</ion-label>
+            <ion-datetime class="numeric" [min]="minYear" [max]="maxYear" displayFormat="DD/MM/YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="signup.birthdate"
+              cancelText="Cancelar" doneText="OK"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Email*</ion-label>
+            <ion-input custom-tab-index type="email" [(ngModel)]="signup.email" name="email"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!signup.facebookId">
+            <ion-label stacked>Senha*</ion-label>
+            <ion-input custom-tab-index type="password" [(ngModel)]="signup.password" name="password"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="!signup.facebookId">
+            <ion-label stacked>Confirmação de Senha*</ion-label>
+            <ion-input custom-tab-index type="password" [(ngModel)]="signup.passwordConfirmation" name="confirmPassword"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Celular*</ion-label>
+            <ion-input type="tel" [textMask]="masks.CELLPHONE" [(ngModel)]="signup.cellPhone" name="cellphone" class="numeric"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Telefone</ion-label>
+            <ion-input custom-tab-index type="tel" [textMask]="masks.PHONE" [(ngModel)]="signup.phone" name="phone" class="numeric"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>* campos obrigatórios</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-slide>
+    <ion-slide padding>
+      <ion-list>
+        <ion-list-header>Localização</ion-list-header>
+        <ion-item>
+          <ion-label stacked>Cep</ion-label>
+          <ion-input custom-tab-index type="tel" [textMask]="masks.ZIPCODE" [(ngModel)]="signup.zipCode" name="zipcode" (ngModelChange)="onZipcodeChange($event)"
+            class="numeric"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Endereço, nº</ion-label>
+          <ion-input custom-tab-index type="text" [(ngModel)]="signup.address1" name="address1"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Complemento</ion-label>
+          <ion-input type="text" [(ngModel)]="signup.address2" name="address2"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Estado</ion-label>
+          <ion-select [(ngModel)]="signup.stateId" name="state" cancelText="Cancelar" (ionChange)="onStateChange($event)">
+            <ion-option *ngFor="let state of states" [value]="state.stateId">{{state.abbreviation}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-label stacked text-left>Cidade</ion-label>
+        <button type="button" ion-button block outline color="light" class="button-select" (click)="selectCity()" icon-end>
+          {{selectedCity.name}}
+          <ion-icon name="md-arrow-dropdown"></ion-icon>
+        </button>
+        <ion-item>
+          <ion-label stacked>Bairro</ion-label>
+          <ion-input type="text" [(ngModel)]="signup.neighborhood" name="neighborhood"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+    <ion-slide padding>
+      <ion-list>
+        <ion-list-header>Área de atuação</ion-list-header>
+        <p text-center>Selecione abaixo a sua principal área de atuação</p>
+        <ion-item>
+          <ion-label stacked>Área</ion-label>
+          <ion-select [(ngModel)]="selectedServiceGroup" name="main-area" cancelText="Cancelar" (ionChange)="onServiceGroupChange($event)">
+            <ion-option *ngFor="let serviceGroup of serviceGroups" [value]="serviceGroup.serviceGroupId">{{serviceGroup.description}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Especialização</ion-label>
+          <ion-select [(ngModel)]="signup.serviceId" name="main-area" cancelText="Cancelar">
+            <ion-option *ngFor="let service of services" [value]="service.serviceId">{{service.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button block color="light" icon-left (click)="prev()" *ngIf="step > 1">
+          <ion-icon name="ios-arrow-back"></ion-icon>
+          Anterior
+        </button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button block color="light" icon-right (click)="next()" *ngIf="step < 3">
+          Avançar
+          <ion-icon name="ios-arrow-forward"></ion-icon>
+        </button>
+        <button ion-button block color="staffpro" icon-right (click)="submit()" *ngIf="step == 3">
+          Concluir
+          <ion-icon name="md-checkmark"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

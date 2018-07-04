@@ -1,0 +1,204 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detalhes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding-horizontal>
+  <ion-refresher (ionRefresh)="doRefresh($event)" *ngIf="model?.enumSpecialContractStatus == 'Aceito'">
+    <ion-refresher-content pullingText="Novos Profissionais" refreshingText="Localizando Profissionais...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="card-confirm" *ngIf="model?.enumSpecialContractStatus == 'Aguardando'">
+    <ion-row>
+      <ion-col col-12>
+        <h4 text-center>Deseja confirmar sua participação?</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <div text-right>
+          <button ion-button color="secondary" (click)="confirmProposal(model, true)">Sim</button>
+        </div>
+      </ion-col>
+      <ion-col col-6>
+        <div>
+          <button ion-button color="danger" (click)="confirmProposal(model, false)">Não</button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-grid>
+    <ion-row class="section-header-event">
+      <ion-col col-10>
+        <h3 text-wrap margin-top>{{model?.eventName}}</h3>
+      </ion-col>
+      <ion-col col-2 text-center>
+        <ion-icon class="more-detail" name="arrow-down" *ngIf="!showDetail" (click)="showDetail=true"></ion-icon>
+        <ion-icon class="more-detail" name="arrow-up" *ngIf="showDetail" (click)="showDetail=false"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="showDetail">
+    <ion-row>
+      <ion-col col-10 margin-vertical>
+        <p>{{model?.eventDescription}}</p>
+      </ion-col>
+      <ion-col col-2 text-right>
+        <span class="date-box" [attr.data-month]="model?.dateStart | date:'EEE'" [attr.data-weekday]="model?.dateStart | date:'MMM'">{{model?.dateStart | date:'dd'}}</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8>
+        <strong class="label">Data e Horário</strong>
+        <h4>{{model?.dateStart | date:'dd/MMM/yyyy HH:mm'}}</h4>
+      </ion-col>
+      <ion-col col-4>
+        <strong class="label">Duração</strong>
+        <h4>{{model?.eventTime}}</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <strong class="label">Término</strong>
+        <h4>{{model?.dateEnd | date:'dd/MMM/yyyy HH:mm'}}</h4>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card margin-vertical class="map" (click)="navigate(model?.lat, model?.lng, 'Local do Evento')" background-image="{{ addressMap }}">
+        </ion-card>
+        <p>{{model?.address1}} {{model?.address2}} - {{model?.neighborhood}}</p>
+        <p>
+          <span class="numeric">{{model?.zipCode}}</span> {{model?.cityName}} / {{model?.stateAbbreviation}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="model?.stages && model?.enumSpecialContractStatus == 'Aceito'">
+    <div class="stages" *ngFor="let stage of model?.stages">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10>
+            <ion-row>
+              <ion-col col-12 text-wrap>
+                <h5>{{stage.stageName}}</h5>
+              </ion-col>
+            </ion-row>
+            <ion-row class="present" *ngIf="stage.professionalsConfirmed || stage.totalProfessionals">
+              <ion-col col-2 text-center>
+                <ion-icon name="done-all" class="icon-present"></ion-icon>
+              </ion-col>
+              <ion-col col-10>
+                <h6>{{stage.professionalsConfirmed || '0'}}/{{stage.totalProfessionals}}</h6>
+              </ion-col>
+            </ion-row>
+          </ion-col> 
+          <ion-col col-1>
+            <ion-icon class="more-detail" name="list" *ngIf="!stage.showArea" (click)="showAll(stage)"></ion-icon>
+            <ion-icon class="more-detail" name="list" *ngIf="stage.showArea" (click)="toogleButton(stage)"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="stage.showArea">
+        <div class="skills" *ngFor="let job of stage.jobs">
+          <ion-grid>
+            <ion-row>
+              <ion-col col-9>
+                <label text-wrap>{{job.serviceName}}</label>
+              </ion-col>
+              <ion-col col-2 text-right>
+                <ion-icon name="people" class="more-detail-jobs" *ngIf="!job.showArea" (click)="toogleButton(job)"></ion-icon>
+                <ion-icon name="people" class="more-detail-jobs" *ngIf="job.showArea" (click)="toogleButton(job)"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12>
+                <label class="text-size" text-wrap>
+                  <strong>Início: </strong>{{job.dateStart | date:'dd/MMM - HH:mm'}}</label>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-12>
+                <label class="text-size" text-wrap>
+                  <strong>Término: </strong>{{job.dateEnd | date:'dd/MMM - HH:mm'}}</label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <div class="row-professional" *ngIf="job.showArea">
+            <ion-list class="card-professional">
+              <ion-item-sliding *ngFor="let contract of job.contracts" #slidingItem>
+                <ion-item>
+                  <ion-grid class="left-margin">
+                    <ion-row>
+                      <ion-col col-11 text-right>
+                        <ion-icon class="icon-swp" name="swap" *ngIf="isSwipeVisible(job, contract)"></ion-icon>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row>
+                      <ion-col col-2>
+                        <img [src]="contract.professionalAvatar" class="avatar">
+                      </ion-col>
+                      <ion-col col-8>
+                        <div padding-left>
+                          <h3 text-wrap>{{contract.professionalName}}</h3>
+                          <strong class="label" text-nowrap>{{contract.professionalCellPhone}}</strong>
+                          <div class="top-buffer-sm" *ngIf="contract.isAbsenceConfirmed">
+                            <strong [ngClass]="{'professional-ausente': contract.isAbsenceConfirmed}">AUSENTE</strong>
+                          </div>
+                          <div class="top-buffer-sm" *ngIf="!contract.isAbsenceConfirmed">
+                            <p class="label title" text-nowrap>
+                              <strong>Check-in: </strong>{{contract.checkIn | date:'dd/MMM - HH:mm'}}
+                              <ion-icon *ngIf="contract.isPresenceConfirmed" class="check-in" name="checkmark"></ion-icon>
+                            </p>
+                            <p class="label title" text-nowrap>
+                              <strong>Check-out: </strong>{{contract.checkOut | date:'dd/MMM - HH:mm'}}
+                              <ion-icon *ngIf="contract.checkOut" class="check-in" name="done-all"></ion-icon>
+                            </p>
+                          </div>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-item>
+
+                <ion-item-options class="swiper" side="right" *ngIf="isSwipeVisible(job, contract)">
+                  <button ion-button class="button-shadow" color="danger" (click)="professionalAction(contract, stage, 'is-absent', slidingItem)"
+                    *ngIf="contract.isAbsentButonShow">
+                    <span class="button-inner">
+                      <ion-icon name="thumbs-down" class="icon-size"></ion-icon>
+                      Ausente
+                    </span>
+                  </button>
+                  <button ion-button class="button-shadow present" (click)="professionalAction(contract, stage, 'confirm-checkin', slidingItem)"
+                    *ngIf="contract.confirmCheckInButonShow">
+                    <span class="button-inner">
+                      <ion-icon name="thumbs-up" class="icon-size"></ion-icon>
+                      Presente
+                    </span>
+                  </button>
+                  <button ion-button class="button-shadow btn-concluido" (click)="professionalAction(contract, stage,'confirm-checkout', slidingItem)"
+                    *ngIf="contract.confirmCheckOutButonShow">
+                    <span class="button-inner">
+                      <ion-icon name="done-all" class="icon-size"></ion-icon>
+                      Concluido
+                    </span>
+                  </button>
+                </ion-item-options>
+              </ion-item-sliding>
+            </ion-list>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

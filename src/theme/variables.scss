@@ -1,0 +1,72 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+$font-path: "../assets/fonts";
+@import "ionic.globals";
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+$font-family-base: "Raleway",
+sans-serif !default;
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+$colors: (
+  primary: #488aff,
+  secondary: #cddc39,
+  danger: #f53d3d,
+  light: #e0e0e0,
+  dark: #111,
+  staffpro: ( base: #ff5722, contrast: #ffffff),
+  facebook: ( base: #3b5998, contrast: #ffffff));
+$button-md-clear-ripple-background-color: transparent;
+$button-md-clear-background-color-activated: transparent;
+$button-md-clear-background-color-hover: transparent;
+$alert-ios-button-text-color: color($colors, staffpro, base);
+$alert-md-button-text-color: color($colors, staffpro, base);
+$radio-ios-color-on: color($colors, staffpro, base);
+$radio-md-color-on: color($colors, staffpro, base);
+$toggle-ios-background-color-on: color($colors, staffpro, base);
+$toggle-md-active-color: color($colors, staffpro, base);
+$toolbar-background: color($colors, staffpro, base);
+$toolbar-ios-title-text-color: color($colors, staffpro, contrast);
+$toolbar-md-title-text-color: color($colors, staffpro, contrast);
+$tabs-background: color($colors, staffpro);
+$tabs-tab-color-active: color($colors, staffpro, contrast);
+$tabs-tab-color-inactive: rgba(255, 255, 255, 0.7);
+$tabs-ios-tab-min-height: 54px;
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+$font-family-ios-base: "Raleway",
+sans-serif !default;
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+$font-family-md-base: "Raleway",
+sans-serif !default;
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+@import "ionic.theme.default";
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+@import "ionic.ionicons";
+// Fonts
+// --------------------------------------------------
+@import "raleway";
+@import "fira-mono";

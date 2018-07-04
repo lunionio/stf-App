@@ -1,0 +1,57 @@
+ion-menu {
+  .header-ios img {
+    max-height: calc(#{$navbar-ios-height} - 14px);
+  }
+  .header-md img {
+    max-height: calc(#{$navbar-md-height} - 24px);
+  }
+  .item-ios, .item-md {
+    border-bottom: 1px solid #e0e0e0;
+
+    ion-icon[item-left],
+    ion-icon[item-start] {
+      color: color($colors, staffpro, base);
+      +.item-inner,
+      +.item-left {
+        margin-left: 8px;
+      }
+    }
+    &.info {
+      padding-right: 0;
+      border-bottom-width: 0;
+      margin-bottom: 16px;
+      h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      p {
+        font-size: 1.2rem;
+        text-transform: lowercase;
+      }
+      ion-label {
+        margin-right: 0;
+      }
+      ion-avatar[item-left],
+      ion-thumbnail[item-left],
+      ion-avatar[item-start],
+      ion-thumbnail[item-start] {
+        margin-right: 16px;
+      }
+      .avatar {
+        box-shadow: 0 1px 2px rgba(0,0,0,.3);
+      }
+    }
+    &.item-block .item-inner {
+      border-bottom-width: 0;
+    }
+    .rating {
+      font-size: 2.4rem;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+  }
+  .list-ios, .list-md {
+    padding-left: 0;
+  }
+}
