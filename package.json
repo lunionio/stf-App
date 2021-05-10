@@ -94,7 +94,7 @@
     "ionic-plugin-keyboard": "^2.2.1",
     "ionic2-auto-complete": "^1.6.2-alpha",
     "ionicons": "3.0.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "ng-lazyload-image": "^3.1.1",
     "rxjs": "5.1.1",
     "string-mask": "^0.3.0",
